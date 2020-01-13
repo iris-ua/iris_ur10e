@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>iris_ur10e</name>
+  <version>0.0.0</version>
+  <description>The iris_ur10e package</description>
+
+  <author email="efp@ua.pt">Eurico Farinha Pedrosa</author>
+  <maintainer email="efp@ua.pt">Eurico Farinha Pedrosa</maintainer>
+
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <exec_depend>rviz</exec_depend>
+  <exec_depend>urdf</exec_depend>
+  <exec_depend>xacro</exec_depend>
+  <exec_depend>moveit</exec_depend>
+  <exec_depend>gazebo_ros</exec_depend>
+
+  <export>
+  </export>
+</package>
