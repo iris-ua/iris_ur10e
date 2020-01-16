@@ -29,3 +29,8 @@ joint_group_position_controller:
      - wrist_2_joint
      - wrist_3_joint
 
+gripper_controller:
+  type: position_controllers/JointGroupPositionController
+  joints:
+      - left_finger_joint
+      - right_finger_joint

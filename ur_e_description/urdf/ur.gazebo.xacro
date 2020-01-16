@@ -24,6 +24,15 @@
     <gazebo reference="${prefix}ee_link">
       <selfCollide>true</selfCollide>
     </gazebo>
+    <gazebo reference="${prefix}gripper_link">
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <gazebo reference="${prefix}left_finger_link">
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <gazebo reference="${prefix}right_finger_link">
+      <selfCollide>true</selfCollide>
+    </gazebo>
 
   </xacro:macro>
 

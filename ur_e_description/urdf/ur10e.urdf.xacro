@@ -346,6 +346,111 @@
       </collision>
     </link>
 
+    <link name="${prefix}gripper_link">
+        <visual>
+            <geometry>
+                <mesh filename="package://ur_e_description/meshes/ur10e/visual/weiss-mount.dae"/>
+            </geometry>
+            <origin xyz="-0.071 0 0" rpy="${pi/-2.0} 0 ${pi/-2.0}"/>
+        </visual>
+        <visual>
+            <geometry>
+                <mesh filename="package://ur_e_description/meshes/ur10e/visual/weiss-cg.dae"/>
+            </geometry>
+            <origin xyz="-0.07 0 0" rpy="${pi/-2.0} 0 ${pi/-2.0}"/>
+        </visual>
+        <collision>
+            <geometry>
+                <box size="0.071 0.105 0.06"/>
+            </geometry>
+            <origin rpy="0 0 0" xyz="${-0.071*0.5} 0 0"/>
+        </collision>
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <mass value="1.7" />
+            <inertia
+                ixx="1.0" ixy="0.0" ixz="0.0"
+                iyy="1.0" iyz="0.0"
+                izz="1.0" />
+        </inertial>
+      <dynamics damping="0.0" friction="0.0"/>
+    </link>
+
+    <joint name="${prefix}gripper_fixed_joint" type="fixed">
+        <origin xyz="0.071 0 0" rpy="0 0 0"/>
+        <parent link="${prefix}ee_link"/>
+        <child link="${prefix}gripper_link"/>
+    </joint>
+
+    <joint name="${prefix}left_finger_joint" type="prismatic">
+        <origin xyz="0 0.02 0" rpy="0 0 0"/>
+        <axis xyz="0 1 0"/>
+        <limit lower="0" upper="0.02" effort="100" velocity="0.05"/>
+        <parent link="${prefix}gripper_link"/>
+        <child link="${prefix}left_finger_link"/>
+    </joint>
+
+    <link name="${prefix}left_finger_link">
+        <visual>
+            <geometry>
+                <box size="0.095 0.02 0.02"/>
+            </geometry>
+            <material name="LightGrey">
+                <color rgba="0.7 0.7 0.7 1.0"/>
+            </material>
+            <origin xyz="${0.095*0.5} 0 0" rpy="0 0 0"/>
+        </visual>
+        <collision>
+            <geometry>
+                <box size="0.095 0.02 0.02"/>
+            </geometry>
+            <origin xyz="${0.095*0.5} 0 0" rpy="0 0 0"/>
+        </collision>
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <mass value="0.1" />
+            <inertia
+                ixx="1.0" ixy="0.0" ixz="0.0"
+                iyy="1.0" iyz="0.0"
+                izz="1.0" />
+        </inertial>
+    </link>
+
+    <link name="${prefix}right_finger_link">
+        <visual>
+            <geometry>
+                <box size="0.095 0.02 0.02"/>
+            </geometry>
+            <material name="LightGrey">
+                <color rgba="0.7 0.7 0.7 1.0"/>
+            </material>
+            <origin xyz="${0.095*0.5} 0 0" rpy="0 0 0"/>
+        </visual>
+        <collision>
+            <geometry>
+                <box size="0.095 0.02 0.02"/>
+            </geometry>
+            <origin xyz="${0.095*0.5} 0 0" rpy="0 0 0"/>
+        </collision>
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <mass value="0.1" />
+            <inertia
+                ixx="1.0" ixy="0.0" ixz="0.0"
+                iyy="1.0" iyz="0.0"
+                izz="1.0" />
+        </inertial>
+    </link>
+
+    <joint name="${prefix}right_finger_joint" type="prismatic">
+        <!-- <origin xyz="0 -0.0425 0" rpy="0 0 0"/> -->
+        <origin xyz="0 -0.02 0" rpy="0 0 0"/>
+        <axis xyz="0 -1 0"/>
+        <limit lower="0" upper="0.02" effort="100" velocity="0.05"/>
+        <parent link="${prefix}gripper_link"/>
+        <child link="${prefix}right_finger_link"/>
+    </joint>
+
     <xacro:ur_arm_transmission prefix="${prefix}" />
     <xacro:ur_arm_gazebo prefix="${prefix}" />
 
@@ -368,34 +473,6 @@
       <parent link="${prefix}wrist_3_link"/>
       <child link="${prefix}tool0"/>
     </joint>
-
-    <link name="${prefix}gripper_link">
-        <visual>
-            <geometry>
-                <mesh filename="package://ur_e_description/meshes/ur10e/visual/weiss-mount.dae"/>
-            </geometry>
-            <origin xyz="-0.071 0 0" rpy="${pi/-2.0} 0 ${pi/-2.0}"/>
-        </visual>
-        <visual>
-            <geometry>
-                <mesh filename="package://ur_e_description/meshes/ur10e/visual/weiss-cg.dae"/>
-            </geometry>
-            <origin xyz="-0.07 0 0" rpy="${pi/-2.0} 0 ${pi/-2.0}"/>
-        </visual>
-        <collision>
-            <geometry>
-                <box size="0.071 0.105 0.06"/>
-            </geometry>
-            <origin rpy="0 0 0" xyz="${0.071*0.5} 0 0"/>
-        </collision>
-    </link>
-
-    <joint name="${prefix}gripper_fixed_joint" type="fixed">
-        <origin xyz="0.071 0 0" rpy="0 0 0"/>
-        <parent link="${prefix}ee_link"/>
-        <child link="${prefix}gripper_link"/>
-    </joint>
-
 
   </xacro:macro>
 </robot>
