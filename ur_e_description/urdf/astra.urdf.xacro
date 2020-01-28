@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<robot name="sensor_astra" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="$(find ur_e_description)/urdf/ur.gazebo.xacro" />
+
+  <!-- Xacro properties -->
+  <xacro:property name="astra_cam_py" value="-0.0125"/>
+  <xacro:property name="astra_depth_rel_rgb_py" value="0.0250" />
+  <xacro:property name="astra_cam_rel_rgb_py"   value="-0.0125" />
+  <xacro:property name="astra_dae_display_scale"   value="0.1" />
+  <!-- Parameterised in part by the values in turtlebot_properties.urdf.xacro -->
+  <xacro:macro name="sensor_astra" params="parent prefix *origin">
+    <joint name="${prefix}_joint" type="fixed">
+      <xacro:insert_block name="origin" />
+      <parent link="${parent}"/>
+      <child link="${prefix}_link"/>
+    </joint>
+    <link name="${prefix}_link">
+      <visual>
+        <origin xyz="-0.03 -0.06 0" rpy="${pi} 0 ${pi/2}"/>
+        <geometry>
+          <mesh filename="package://ur_e_description/meshes/sensors/astra2.dae" scale="1 1 1"/>
+        </geometry>
+      </visual>
+      <collision>
+        <!-- <origin xyz="0.0 0.0 0.0" rpy="0 0 0" /> -->
+        <origin xyz="-0.01 -0.06 0" rpy="0 0 0"/>
+        <geometry>
+        <box size="0.0400 0.1650 0.0300"/>
+      </geometry>
+      </collision>
+      <inertial>
+        <mass value="0.564" />
+        <origin xyz="0 0 0" />
+        <inertia ixx="0.003881243" ixy="0.0" ixz="0.0"
+                 iyy="0.000498940" iyz="0.0"
+                 izz="0.003879257" />
+      </inertial>
+    </link>
+
+    <joint name="${prefix}_rgb_joint" type="fixed">
+      <origin xyz="0 -0.045 0" rpy="0 0 0" />
+      <parent link="${prefix}_link"/>
+      <child link="${prefix}_rgb_frame" />
+    </joint>
+    <link name="${prefix}_rgb_frame"/>
+
+    <joint name="${prefix}_rgb_optical_joint" type="fixed">
+      <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}" />
+      <parent link="${prefix}_rgb_frame" />
+      <child link="${prefix}_rgb_optical_frame" />
+    </joint>
+    <link name="${prefix}_rgb_optical_frame"/>
+
+    <joint name="${prefix}_depth_joint" type="fixed">
+        <origin xyz="0 -0.02 0" rpy="0 0 0" />
+        <parent link="${prefix}_link" />
+        <child link="${prefix}_depth_frame" />
+    </joint>
+    <link name="${prefix}_depth_frame"/>
+
+    <joint name="${prefix}_depth_optical_joint" type="fixed">
+        <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}" />
+        <parent link="${prefix}_depth_frame" />
+        <child link="${prefix}_depth_optical_frame" />
+    </joint>
+    <link name="${prefix}_depth_optical_frame"/>
+
+    <xacro:sim_3dsensor prefix="${prefix}" />
+
+  </xacro:macro>
+</robot>
