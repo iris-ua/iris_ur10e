@@ -21,8 +21,10 @@
   <buildtool_depend>catkin</buildtool_depend>
   <test_depend>roslaunch</test_depend>
   <exec_depend>controller_manager</exec_depend>
+  <exec_depend>force_torque_sensor_controller</exec_depend>
   <exec_depend>effort_controllers</exec_depend>
   <exec_depend>joint_state_controller</exec_depend>
+  <exec_depend>joint_trajectory_controller</exec_depend>
   <exec_depend>joint_trajectory_controller</exec_depend>
   <exec_depend>gazebo_ros</exec_depend>
   <exec_depend>gazebo_ros_control</exec_depend>

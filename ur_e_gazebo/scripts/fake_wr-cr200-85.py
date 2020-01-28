@@ -109,11 +109,11 @@ class FakeWSCR200Gripper:
     def GetMaintenance(self, gid, idx):
         pass
 
-    def GetPos(self, gid, idx):
-        if gid != self.gid or idx != 1:
+    def GetPos(self, gid):
+        if gid != self.gid:
             return -1
 
-        return self.pos
+        return self.pos * 1000.0
 
     def GetGrippers(self):
         return [self.gid]

@@ -52,4 +52,8 @@
     <arg name="tool_device_name" value="$(arg tool_device_name)"/>
     <arg name="tool_tcp_port" value="$(arg tool_tcp_port)"/>
   </include>
+
+  <!-- Gripper Joints -->
+  <node name="wr_cr200_85" pkg="ur_robot_driver" type="wr_cr200_85.py"/>
+
 </launch>
