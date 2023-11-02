@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import threading
 import rospy
@@ -6,8 +6,8 @@ import rospy
 from std_msgs.msg import Float64MultiArray
 from sensor_msgs.msg import JointState
 
-from SocketServer import ThreadingMixIn
-from SimpleXMLRPCServer import SimpleXMLRPCServer
+from socketserver import ThreadingMixIn
+from xmlrpc.server import SimpleXMLRPCServer
 
 class ThreadedSimpleXMLRCPServer(ThreadingMixIn, SimpleXMLRPCServer):
     pass

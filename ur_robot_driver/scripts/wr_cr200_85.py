@@ -1,6 +1,6 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
-import xmlrpclib
+import xmlrpc.client
 
 import rospy
 
@@ -14,7 +14,7 @@ class CR200ROS(object):
 
     def __init__(self, options):
         connstr = "http://{}:{}/RPC2".format(options['host'], options['port'])
-        self.grpc = xmlrpclib.ServerProxy(connstr)
+        self.grpc = xmlrpc.client.ServerProxy(connstr)
         self.gid = self.grpc.GetGrippers()[0]
 
         self.pub = rospy.Publisher('/joint_states', JointState, queue_size=10)
